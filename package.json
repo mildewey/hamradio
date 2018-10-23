@@ -1,0 +1,18 @@
+{
+  "name": "hamradio",
+  "version": "1.0.0",
+  "description": "A pubsub module that uses BroadcastChannel to communicate across browser tabs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "ava"
+  },
+  "keywords": [
+    "pubsub",
+    "broadcastchannel"
+  ],
+  "author": "Mark Dewey",
+  "license": "ISC",
+  "devDependencies": {
+    "ava": "1.0.0-rc.1"
+  }
+}
