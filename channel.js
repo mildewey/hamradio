@@ -8,7 +8,7 @@ exports.newChannel = function (name) {
   }
 
   newChannel.broadcast.onmessage = function ({channel, data}) {
-    callHandlers(channel, newChannel.handlers, data)
+    exports.callHandlers(channel, newChannel.handlers, data)
       .catch(error => console.log(error))
   }
 
