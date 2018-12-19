@@ -11,7 +11,7 @@ exports.publish = function (name, data) {
   channels = channel.getChannels(channel.parseChannelNames(prefixedName))
   return Promise.all(channels.map(chan => {
     chan.broadcast.postMessage({channel: chan.name, data})
-    return callHandlers(prefixedName, chan.handlers, data)
+    return channel.callHandlers(prefixedName, chan.handlers, data)
   }))
 }
 
