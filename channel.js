@@ -45,7 +45,7 @@ exports.getChannels = function (names) {
 exports.callHandlers = function (name, handlers, data, logging) {
   return Promise.all(handlers.map(handler => new Promise(function (resolve, reject) {
     const wrapper = () => {
-      if (logging) console.log(`${handler} subscribed to ${name} received ${JSON.stringify(data, 2)}`)
+      if (logging) console.log(`${handler.name || handler.toString()} subscribed to ${name} received ${JSON.stringify(data, 2)}`)
       handler(name, data)
       resolve()
     }
