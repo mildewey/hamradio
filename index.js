@@ -1,5 +1,6 @@
 const channel = require('./channel.js')
 let prefix = ''
+let logging = false
 
 exports.subscribe = function (name, handler) {
   let prefixedName = prefix.length !== 0 ? `${prefix}/${name}` : name
@@ -7,6 +8,8 @@ exports.subscribe = function (name, handler) {
 }
 
 exports.publish = function (name, data) {
+  if (logging) console.log(`${name} published ${JSON.stringify(data, 2)}`)
+
   let prefixedName = prefix.length !== 0 ? `${prefix}/${name}` : name
   channels = channel.getChannels(channel.parseChannelNames(prefixedName))
   return Promise.all(channels.map(chan => {
@@ -17,4 +20,8 @@ exports.publish = function (name, data) {
 
 exports.prefix = function (pre) {
   prefix = pre
+}
+
+exports.logging = function (log) {
+  logging = log
 }
