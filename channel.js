@@ -42,9 +42,10 @@ exports.getChannels = function (names) {
     .map(name => registeredChannels[name] || exports.newChannel(name))
 }
 
-exports.callHandlers = function (name, handlers, data) {
+exports.callHandlers = function (name, handlers, data, logging) {
   return Promise.all(handlers.map(handler => new Promise(function (resolve, reject) {
     const wrapper = () => {
+      if (logging) console.log(`${handler.name || handler.toString()} subscribed to ${name} received ${JSON.stringify(data, 2)}`)
       handler(name, data)
       resolve()
     }
